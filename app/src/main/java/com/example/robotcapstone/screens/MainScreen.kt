@@ -32,7 +32,10 @@ private val tourStops = listOf(
 )
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onStartTour: () -> Unit = {},
+    onPauseTour: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -180,7 +183,7 @@ fun MainScreen() {
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             Button(
-                onClick = {},
+                onClick = {onStartTour()},
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
@@ -201,7 +204,7 @@ fun MainScreen() {
             }
 
             OutlinedButton(
-                onClick = {},
+                onClick = {onPauseTour()},
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),

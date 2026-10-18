@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.robotcapstone.navigation.AppNavigation
 import com.example.robotcapstone.screens.MainScreen
 import com.example.robotcapstone.ui.theme.RobotCapstoneTheme
 
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     androidx.compose.foundation.layout.Box(
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        MainScreen()
+                        AppNavigation()
                     }
                 }
             }
