@@ -1,4 +1,3 @@
-
 package com.example.robotcapstone.screens
 
 import androidx.compose.foundation.BorderStroke
@@ -33,8 +32,11 @@ private val tourStops = listOf(
 
 @Composable
 fun MainScreen(
+    status: String = "Ready",
+    currentStopIndex: Int? = null,
     onStartTour: () -> Unit = {},
-    onPauseTour: () -> Unit = {}
+    onPauseTour: () -> Unit = {},
+    onResumeTour: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -100,7 +102,7 @@ fun MainScreen(
 
                     Spacer(Modifier.height(12.dp))
 
-                    Text("Status: Ready", color = lightText, fontSize = 17.sp)
+                    Text("Status: $status", color = lightText, fontSize = 17.sp)
                     Text("Battery: 100%", color = lightText, fontSize = 17.sp)
                     Text("Location: Main Entrance", color = lightText, fontSize = 17.sp)
                 }
@@ -132,7 +134,11 @@ fun MainScreen(
 
                     Text("Estimated Time: 15 Minutes", color = lightText, fontSize = 17.sp)
                     Text("Number of Stops: ${tourStops.size}", color = lightText, fontSize = 17.sp)
-                    Text("Current Stop: None", color = lightText, fontSize = 17.sp)
+                    Text(
+                        "Current Stop: ${currentStopIndex?.let { tourStops.getOrNull(it) } ?: "None"}",
+                        color = lightText,
+                        fontSize = 17.sp
+                    )
                 }
             }
 
@@ -183,7 +189,7 @@ fun MainScreen(
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
             Button(
-                onClick = {onStartTour()},
+                onClick = { onStartTour() },
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
@@ -204,7 +210,7 @@ fun MainScreen(
             }
 
             OutlinedButton(
-                onClick = {onPauseTour()},
+                onClick = { onPauseTour() },
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
@@ -221,7 +227,7 @@ fun MainScreen(
             }
 
             OutlinedButton(
-                onClick = {},
+                onClick = { onResumeTour() },
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
